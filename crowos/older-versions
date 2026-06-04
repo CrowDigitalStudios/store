@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crow Digital Studios</title>
+  <style>
+    :root {
+      /* EDIT YOUR BACKGROUND IMAGE LINK HERE */
+      --bg-image-url: url('crowOS Background.JPEG');
+      
+      --card-bg: rgba(255, 255, 255, 0.85); /* Semitransparent white for glassmorphism */
+      --text-main: #1d1d1f;
+      --text-muted: #515154;
+      --primary-blue: #0071e3;
+      --primary-hover: #0077ed;
+      --radius-squircle: 22%;
+      --radius-sm: 8px;
+      --transition-smooth: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text-main);
+      line-height: 1.47059;
+      letter-spacing: -0.022em;
+      min-height: 100vh;
+      padding: 60px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Full screen responsive background layer */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: var(--bg-image-url);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: -1; /* Pushes background behind your content */
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    header h1 {
+      font-size: 2.75rem;
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      color: #ffffff; /* White header stands out perfectly on dark/colored backgrounds */
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Soft shadow guarantees readability */
+    }
+
+    .app-container {
+      width: 100%;
+      max-width: 600px;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Premium App Store Card with Acrylic Blur Effect */
+    .app-card {
+      background-color: var(--card-bg);
+      backdrop-filter: blur(20px); /* Premium Apple-style frosted glass effect */
+      -webkit-backdrop-filter: blur(20px); /* Safari support */
+      width: 100%;
+      padding: 32px;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+      display: flex;
+      gap: 28px;
+      align-items: flex-start;
+      transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+    }
+
+    .app-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+    }
+
+    /* App Store Icon Profile */
+    .app-icon-wrapper {
+      width: 110px;
+      height: 110px;
+      flex-shrink: 0;
+      border-radius: var(--radius-squircle);
+      background: linear-gradient(135deg, #1e1e24 0%, #0a0a0c 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: inset 0 0 1px rgba(255,255,255,0.2), 0 4px 12px rgba(0,0,0,0.15);
+      overflow: hidden;
+    }
+
+    /* Vector Logo Placeholder */
+    .css-logo-crow {
+      width: 0;
+      height: 0;
+      border-left: 22px solid transparent;
+      border-right: 22px solid transparent;
+      border-top: 38px solid #ffffff;
+      position: relative;
+      transform: translateY(6px);
+    }
+    .css-logo-crow::after {
+      content: '';
+      position: absolute;
+      top: -38px;
+      left: -10px;
+      width: 20px;
+      height: 15px;
+      background: #0071e3;
+      border-radius: 50%;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .content h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 4px;
+    }
+
+    .developer-tag {
+      font-size: 0.9rem;
+      color: var(--primary-blue);
+      font-weight: 600;
+      margin-bottom: 12px;
+      text-decoration: none;
+    }
+
+    .content p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      font-weight: 400;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* Download Button Pills */
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 24px;
+      border-radius: 20px;
+      background-color: rgba(0, 0, 0, 0.05);
+      color: var(--primary-blue);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: background-color var(--transition-smooth), transform 0.1s ease;
+    }
+
+    .download-btn.primary {
+      background-color: var(--primary-blue);
+      color: #ffffff;
+    }
+
+    .download-btn:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .download-btn.primary:hover {
+      background-color: var(--primary-hover);
+    }
+    
+    .download-btn:active {
+      transform: scale(0.97);
+    }
+
+    /* Responsive Breakpoint for Mobile Devices */
+    @media (max-width: 480px) {
+      body {
+        padding: 40px 16px;
+      }
+      .app-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 28px 20px;
+      }
+      .actions {
+        justify-content: center;
+        width: 100%;
+      }
+      .download-btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Crow Digital Studios</h1>
+  </header>
+
+  <main class="app-container">
+    <section class="app-card">
+      
+      <!-- App Store Squircle Icon -->
+      <div class="app-icon-wrapper">
+        <!-- You can swap this line in for your real app asset image whenever you're ready: -->
+        <!-- <img src="crowOSlogo.png" alt="crowOS Icon" style="width:100%; height:100%; object-fit:cover;"> -->
+        <img src="crowOSlogo.png" alt="crowOS Icon" style="width:100%; height:100%; object-fit:cover;">
+      </div>
+
+      <div class="content">
+        <h2>crowOS</h2>
+        <a href="#" class="developer-tag">Crow Software Solutions</a>
+        <p>v1.2.1</p> <a href="https://crowdigitalstudios.github.io/store" class="developer-tag">Newest Version</a>
+        <p>Experience the ultimate desktop workspace framework natively within a smooth, containerized runtime sandbox environment.</p>
+        
+        <div class="actions">
+          <a href="https://github.com/CrowDigitalStudios/store/releases/download/crowOS-Mac/crowOS1.2.1.dmg" download class="download-btn primary">Get Mac App</a>
+          <a href="https://github.com/CrowDigitalStudios/store/releases/download/crowOS-Mac/crowOS1.2.1.exe" download class="download-btn">Get Windows</a>
+        </div>
+      </div>
+
+    </section>
+  </main>
+                                  <main class="app-container">
+    <section class="app-card">
+      
+      <!-- App Store Squircle Icon -->
+      <div class="app-icon-wrapper">
+        <!-- You can swap this line in for your real app asset image whenever you're ready: -->
+        <!-- <img src="crowOSlogo.png" alt="crowOS Icon" style="width:100%; height:100%; object-fit:cover;"> -->
+        <img src="crowOSlogo.png" alt="crowOS Icon" style="width:100%; height:100%; object-fit:cover;">
+      </div>
+
+      <div class="content">
+        <h2>crowOS</h2>
+        <a href="#" class="developer-tag">Crow Software Solutions</a>
+        <p>v1.1.8</p> <a href="https://crowdigitalstudios.github.io/store" class="developer-tag">Newest Version</a>
+        <p>Experience the ultimate desktop workspace framework natively within a smooth, containerized runtime sandbox environment.</p>
+        
+        <div class="actions">
+          <a href="https://github.com/CrowDigitalStudios/store/releases/download/crowOS-Mac/crowOS1.1.8.dmg" download class="download-btn primary">Get Mac App</a>
+          <a href="https://github.com/CrowDigitalStudios/store/releases/download/crowOS-Mac/crowOS1.1.8.exe" download class="download-btn">Get Windows</a>
+        </div>
+      </div>
+
+    </section>
+  </main>
+                               <main class="app-container">
+    <section class="app-card">
+      
+      <!-- App Store Squircle Icon -->
+      <div class="app-icon-wrapper">
+        <!-- You can swap this line in for your real app asset image whenever you're ready: -->
+        <!-- <img src="crowOSlogo.png" alt="crowOS Icon" style="width:100%; height:100%; object-fit:cover;"> -->
+        <img src="crowOSlogo.png" alt="crowOS Icon" style="width:100%; height:100%; object-fit:cover;">
+      </div>
+
+      <div class="content">
+        <h2>crowOS</h2>
+        <a href="#" class="developer-tag">Crow Software Solutions</a>
+        <p>v1.1.7</p> <a href="https://crowdigitalstudios.github.io/store" class="developer-tag">Newest Version</a>
+        <p>Experience the ultimate desktop workspace framework natively within a smooth, containerized runtime sandbox environment.</p>
+        
+        <div class="actions">
+          <a href="https://github.com/CrowDigitalStudios/store/releases/download/crowOS-Mac/crowOS1.1.7.dmg" download class="download-btn primary">Get Mac App</a>
+          <a href="https://github.com/CrowDigitalStudios/store/releases/download/crowOS-Mac/crowOS1.1.7.exe" download class="download-btn">Get Windows</a>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+</body>
+</html>
